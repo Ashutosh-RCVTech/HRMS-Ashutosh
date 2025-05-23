@@ -165,10 +165,11 @@
         <!-- Cards will be appended here -->
     </div> --}}
         <div class="h-[75vh] overflow-y-auto pr-2">
-            <div id="placement-cards-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            <<div id="placement-cards-container"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 h-[75vh] overflow-y-auto pr-2">
                 <!-- Cards will be appended here -->
-            </div>
         </div>
+    </div>
 
     </div>
 
@@ -283,36 +284,36 @@
                 ${
                     status === 0
                         ? `
-                                <button onclick="handleAcceptClick(event)"
-                                    data-placement-id="${item.id}"
-                                    data-placement-name="${item.name}"
-                                    class="px-2 py-1 text-xs font-medium text-white bg-green-600 hover:bg-green-700 rounded-md transition whitespace-nowrap">
-                                    Accept
-                                </button>
-                                <button onclick="handleRejectClick(event)"
-                                    data-placement-id="${item.id}"
-                                    data-placement-name="${item.name}"
-                                    class="px-2 py-1 text-xs font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition whitespace-nowrap">
-                                    Reject
-                                </button>
-                                <button onclick="handleViewDeatilsClick(event)"
-                                    data-placement-detail-id="${item.id}"
-                                    class="px-2 py-1 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition whitespace-nowrap">
-                                    View Details
-                                </button>
-                            `
+                                    <button onclick="handleAcceptClick(event)"
+                                        data-placement-id="${item.id}"
+                                        data-placement-name="${item.name}"
+                                        class="px-2 py-1 text-xs font-medium text-white bg-green-600 hover:bg-green-700 rounded-md transition whitespace-nowrap">
+                                        Accept
+                                    </button>
+                                    <button onclick="handleRejectClick(event)"
+                                        data-placement-id="${item.id}"
+                                        data-placement-name="${item.name}"
+                                        class="px-2 py-1 text-xs font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition whitespace-nowrap">
+                                        Reject
+                                    </button>
+                                    <button onclick="handleViewDeatilsClick(event)"
+                                        data-placement-detail-id="${item.id}"
+                                        class="px-2 py-1 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition whitespace-nowrap">
+                                        View Details
+                                    </button>
+                                `
                         : `
-                                <button onclick="handleAssignClick(event)"
-                                    data-placement-id="${item.id}"
-                                    class="px-2 py-1 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition whitespace-nowrap">
-                                    Assign
-                                </button>
-                                <button onclick="handleViewDeatilsClick(event)"
-                                    data-placement-detail-id="${item.id}"
-                                    class="px-2 py-1 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition whitespace-nowrap">
-                                    View Details
-                                </button>
-                            `
+                                    <button onclick="handleAssignClick(event)"
+                                        data-placement-id="${item.id}"
+                                        class="px-2 py-1 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition whitespace-nowrap">
+                                        Assign
+                                    </button>
+                                    <button onclick="handleViewDeatilsClick(event)"
+                                        data-placement-detail-id="${item.id}"
+                                        class="px-2 py-1 text-xs font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md transition whitespace-nowrap">
+                                        View Details
+                                    </button>
+                                `
                 }
             </div>
         </div>

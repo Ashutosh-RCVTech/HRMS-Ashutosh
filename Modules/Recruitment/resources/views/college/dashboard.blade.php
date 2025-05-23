@@ -163,13 +163,13 @@
                 <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md lg:col-span-3">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Pending Placement Drives</h2>
-                        <span
+                        <span   
                             class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-300 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ $pendingPlacements }}
                             pending</span>
                     </div>
 
                     @if ($pendingPlacements > 0)
-                        <div class="overflow-x-auto">
+                        <div class="overflow-x-auto max-h-[500px] overflow-y-auto">
                             <table class="min-w-full bg-white dark:bg-slate-800">
                                 <thead class="bg-gray-50 dark:bg-slate-700">
                                     <tr>
@@ -190,9 +190,13 @@
                                 <tbody class="divide-y divide-gray-200 dark:divide-slate-700">
                                     @foreach ($placements->where('college_acceptance', null) as $placement)
                                         <tr class="hover:bg-gray-50 dark:hover:bg-slate-700">
+                                            {{-- <td
+                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                                {{ $placement->placement_id }}</td> --}}
                                             <td
                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                                                {{ $placement->placement_id }}</td>
+                                                {{ $loop->iteration }}
+                                            </td>
                                             <td
                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                                 {{ $placement->created_at->format('M d, Y') }}</td>
@@ -337,7 +341,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 // Initialize Monthly Placements Chart
                 initMonthlyStatsChart();
-                
+
                 //Presist theme
                 if (localStorage.getItem('theme') === 'dark' ||
                     (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -441,7 +445,7 @@
                     })
                     .catch(error => {
                         console.error('Error fetching stats:', error);
-                        showToast('Failed to load statistics', 'error');
+                        // showToast('Failed to load statistics', 'error');
                     });
             }
 

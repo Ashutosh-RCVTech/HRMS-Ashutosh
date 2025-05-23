@@ -385,7 +385,7 @@
                                                 Cover Letter <span class="text-red-500">*</span>
                                             </label>
                                             <textarea id="cover_letter" name="cover_letter" rows="5"
-                                                class="block w-full px-5 py-4 rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-400 shadow-sm focus:ring-4 focus:ring-primary-500/40 focus:border-primary-500 focus:outline-none transition-all duration-300 ease-in-out"
+                                                class="block w-full px-5 py-4 rounded-2xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-400 shadow-sm focus:ring-4 focus:ring-pink-500/40 focus:border-pink-500 focus:outline-none transition-all duration-300 ease-in-out"
                                                 placeholder="Tell us why you're the perfect candidate for this role..." required></textarea>
                                         </div>
 
@@ -553,10 +553,48 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const resumeUpload = document.getElementById('resume');
+
+            // Validate file size on change
+            resumeUpload.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const fileSizeMB = file.size / (1024 * 1024); // Convert to MB
+                    const maxSizeMB = 5;
+
+                    if (fileSizeMB > maxSizeMB) {
+                        // Show error message
+                        toastr.error('Resume exceeds 5MB. Please choose a smaller file.');
+                        // Clear the file input
+                        this.value = '';
+                        // Disable submit button
+                        document.getElementById('submit_application').disabled = true;
+                    }
+                }
+            });
             $("#job_application_form").submit(function(e) {
                 e.preventDefault();
+
+                const fileInput = document.getElementById('resume');
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const fileSizeMB = file.size / (1024 * 1024);
+                    const maxSizeMB = 5;
+
+                    if (fileSizeMB > maxSizeMB) {
+                        toastr.error('Resume exceeds 5MB. Please choose a smaller file.');
+                        return false;
+                    }
+                }
+
                 let form = $(this)[0];
                 let data = new FormData(form);
+
+
+                // Show loading state
+                document.getElementById('submit-text').textContent = 'Submitting...';
+                document.getElementById('submit-spinner').classList.remove('hidden');
+                document.getElementById('submit-arrow').classList.add('hidden');
 
                 $.ajax({
                     url: "{{ route('candidate.jobs.apply', $job->id) }}",
@@ -571,6 +609,10 @@
                             window.location.href = response.redirect;
                         } else {
                             toastr.error(response.message || 'Failed to apply.');
+                            document.getElementById('submit-text').textContent =
+                                'Submit Application';
+                            document.getElementById('submit-spinner').classList.add('hidden');
+                            document.getElementById('submit-arrow').classList.remove('hidden');
                         }
                     },
                     error: function(xhr) {
@@ -581,6 +623,10 @@
                             errorMsg = xhr.responseJSON.message;
                         }
                         toastr.error(errorMsg);
+                        document.getElementById('submit-text').textContent =
+                            'Submit Application';
+                        document.getElementById('submit-spinner').classList.add('hidden');
+                        document.getElementById('submit-arrow').classList.remove('hidden');
                     }
                 });
             });
@@ -593,6 +639,7 @@
             const submitButton = document.getElementById('submit_application');
 
             function validateForm() {
+
                 const coverLetterFilled = coverLetter.value.trim().length > 0;
                 const resumeUploaded = resumeUpload.files.length > 0;
 

@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
 .scrollbar-hide::-webkit-scrollbar {
     width: 6px;
 }
@@ -141,4 +141,4 @@ input, textarea {
 .question-item.current {
     @apply ring-2 ring-blue-500 shadow-lg scale-105;
 }
-</style> 
+</style>  --}}

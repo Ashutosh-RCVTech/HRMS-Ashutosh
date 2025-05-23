@@ -100,11 +100,22 @@
                         @endif
                     </div>
 
-                    <div class="col-span-6 sm:col-span-3">
+                    {{-- <div class="col-span-6 sm:col-span-3">
                         <label for="resume" class="block text-sm font-medium text-gray-700 dark:text-white">Resume
                             (required)</label>
                         <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx"
                             class="mt-1 block w-full dark:text-white">
+                        @if ($basicDetail->resume_path)
+                            <a href="{{ Storage::url($basicDetail->resume_path) }}" target="_blank"
+                                class="mt-2 text-sm text-indigo-600 hover:text-indigo-500 dark:text-white">View Current
+                                Resume</a>
+                        @endif
+                    </div> --}}
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="resume" class="block text-sm font-medium text-gray-700 dark:text-white">Resume
+                            (required)</label>
+                        <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx"
+                            class="mt-1 block w-full dark:text-white" onchange="validateResumeSize(this)">
                         @if ($basicDetail->resume_path)
                             <a href="{{ Storage::url($basicDetail->resume_path) }}" target="_blank"
                                 class="mt-2 text-sm text-indigo-600 hover:text-indigo-500 dark:text-white">View Current
@@ -449,6 +460,54 @@
         }
 
         // Function to show error message below input field
+        // function showError(field, message) {
+        //     const input = document.getElementById(field);
+        //     if (!input) return;
+
+        //     // Create error message element if it doesn't exist
+        //     let errorElement = input.nextElementSibling;
+        //     if (!errorElement || !errorElement.classList.contains('error-message')) {
+        //         errorElement = document.createElement('p');
+        //         errorElement.className = 'error-message mt-1 text-sm text-red-600 dark:text-red-400';
+        //         input.parentNode.insertBefore(errorElement, input.nextSibling);
+        //     }
+
+        //     // Update error message
+        //     errorElement.textContent = message;
+
+        //     // Add error styling to input
+        //     input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+        // }
+
+        // // Function to clear all error messages
+        // function clearErrors() {
+        //     // Clear error messages
+        //     document.querySelectorAll('.error-message').forEach(element => {
+        //         element.textContent = '';
+        //     });
+
+        //     // Remove error styling from inputs
+        //     document.querySelectorAll('input, textarea').forEach(input => {
+        //         input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+        //     });
+        // }
+
+        function validateResumeSize(input) {
+            const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+            clearErrors('resume');
+
+            if (input.files && input.files[0]) {
+                const fileSize = input.files[0].size;
+                if (fileSize > maxSize) {
+                    const sizeInMB = (fileSize / (1024 * 1024)).toFixed(2);
+                    showError('resume', `File size (${sizeInMB}MB) exceeds the 5MB limit.`);
+                    input.value = ''; // Clear the selected file
+                    return false;
+                }
+            }
+            return true;
+        }
+
         function showError(field, message) {
             const input = document.getElementById(field);
             if (!input) return;
@@ -468,17 +527,19 @@
             input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
         }
 
-        // Function to clear all error messages
-        function clearErrors() {
-            // Clear error messages
-            document.querySelectorAll('.error-message').forEach(element => {
-                element.textContent = '';
-            });
+        // Function to clear error message for a specific field
+        function clearErrors(field) {
+            const input = document.getElementById(field);
+            if (!input) return;
 
-            // Remove error styling from inputs
-            document.querySelectorAll('input, textarea').forEach(input => {
-                input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
-            });
+            // Clear error message
+            let errorElement = input.nextElementSibling;
+            if (errorElement && errorElement.classList.contains('error-message')) {
+                errorElement.textContent = '';
+            }
+
+            // Remove error styling from input
+            input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
         }
 
         // Clear errors when input changes
@@ -521,7 +582,8 @@
                 } else if (countryCode === '+1' && cleanMobileNumber.length !== 10) {
                     isValid = false;
                     showError('mobile', "Please enter a valid 10-digit US/Canada mobile number");
-                } else if (countryCode === '+44' && (cleanMobileNumber.length < 10 || cleanMobileNumber.length > 11)) {
+                } else if (countryCode === '+44' && (cleanMobileNumber.length < 10 || cleanMobileNumber
+                        .length > 11)) {
                     isValid = false;
                     showError('mobile', "Please enter a valid UK mobile number (10-11 digits)");
                 } else if (cleanMobileNumber.length < 5) {
@@ -596,7 +658,8 @@
                             const firstError = document.querySelector('.error-message');
                             if (firstError) {
                                 window.scrollTo({
-                                    top: firstError.getBoundingClientRect().top + window.scrollY - 100,
+                                    top: firstError.getBoundingClientRect().top +
+                                        window.scrollY - 100,
                                     behavior: 'smooth'
                                 });
                             }

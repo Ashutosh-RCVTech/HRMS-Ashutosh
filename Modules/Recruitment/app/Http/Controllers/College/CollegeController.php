@@ -77,7 +77,7 @@ class CollegeController extends Controller
 
         $institution = new Institution();
         $institution->name = $request->name;
-    
+
         $institution->save();
         Auth::guard('college')->login($college);
 
@@ -630,19 +630,50 @@ class CollegeController extends Controller
         ]);
     }
 
+    // public function showPlacementDetail($placementId)
+    // {
+
+    //     $placement = Placements::with([
+    //         'educationLevel',
+    //         'placementDegrees.degree',
+    //         'placementSkills.skill'
+    //     ])->find($placementId);
+
+
+
+    //     return view('Recruitment::college.drives.placement-detail', compact('placement'));
+    // }
+
     public function showPlacementDetail($placementId)
     {
+        // Step 1: Get logged-in college ID
+        $collegeUser = Auth::guard('college')->user();
+        if (!$collegeUser) {
+            abort(401, 'You must be logged in as a college user.');
+        }
+        $collegeId = $collegeUser->college ? $collegeUser->college->id : $collegeUser->id;
 
+        // Step 2: Check if placement is assigned to this college (regardless of acceptance status)
+        $placementCollege = \Modules\Recruitment\Models\Placement\PlacementColleges::where([
+            'college_id' => $collegeId,
+            'placement_id' => $placementId
+        ])->first();
+
+        if (!$placementCollege) {
+            abort(403, 'You are not authorized to view this placement.');
+        }
+
+        // Step 3: Load placement details
         $placement = Placements::with([
             'educationLevel',
             'placementDegrees.degree',
             'placementSkills.skill'
-        ])->find($placementId);
+        ])->findOrFail($placementId);
 
-
-
-        return view('Recruitment::college.drives.placement-detail', compact('placement'));
+        // Optionally, pass the acceptance status to the view
+        return view('Recruitment::college.drives.placement-detail', compact('placement', 'placementCollege'));
     }
+
 
     public function verificationStatus()
     {

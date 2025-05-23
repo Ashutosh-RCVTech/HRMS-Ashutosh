@@ -198,7 +198,7 @@
                                             @endforeach
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4">
+                                    {{-- <td class="px-6 py-4">
                                         <select
                                             class="form-select status-select px-2 py-1 text-xs font-semibold rounded-full
                                         {{ $application->status === 'accepted'
@@ -234,7 +234,52 @@
                                         <div class="text-xs text-gray-500 mt-1 dark:text-gray-300">
                                             Applied: {{ $application->created_at->format('M d, Y') }}
                                         </div>
+                                    </td> --}}
+                                    <td class="px-6 py-4">
+                                        <select
+                                            class="form-select status-select px-6 py-2 text-sm font-bold rounded-full shadow-sm transition-colors duration-200
+            {{ match ($application->status) {
+                'accepted' => 'bg-green-100 text-green-800 dark:bg-green-200 dark:text-green-900',
+                'rejected' => 'bg-red-100 text-red-800 dark:bg-red-200 dark:text-red-900',
+                'applied' => 'bg-blue-100 text-blue-800 dark:bg-blue-200 dark:text-blue-900',
+                'screening' => 'bg-indigo-100 text-indigo-800 dark:bg-indigo-200 dark:text-indigo-900',
+                'interview' => 'bg-purple-100 text-purple-800 dark:bg-purple-200 dark:text-purple-900',
+                'test' => 'bg-yellow-100 text-yellow-800 dark:bg-yellow-200 dark:text-yellow-900',
+                'offered' => 'bg-teal-100 text-teal-800 dark:bg-teal-200 dark:text-teal-900',
+                'withdrawn' => 'bg-gray-100 text-gray-800 dark:bg-gray-300 dark:text-gray-900',
+                'closed' => 'bg-zinc-100 text-zinc-800 dark:bg-zinc-300 dark:text-zinc-900',
+                default => 'bg-neutral-100 text-neutral-800 dark:bg-neutral-200 dark:text-neutral-900',
+            } }}"
+                                            data-id="{{ $application->id }}">
+                                            <option value="applied"
+                                                {{ $application->status == 'applied' ? 'selected' : '' }}>Applied</option>
+                                            <option value="screening"
+                                                {{ $application->status == 'screening' ? 'selected' : '' }}>Screening
+                                            </option>
+                                            <option value="interview"
+                                                {{ $application->status == 'interview' ? 'selected' : '' }}>Interview
+                                            </option>
+                                            <option value="test" {{ $application->status == 'test' ? 'selected' : '' }}>
+                                                Test</option>
+                                            <option value="accepted"
+                                                {{ $application->status == 'accepted' ? 'selected' : '' }}>Accepted
+                                            </option>
+                                            <option value="rejected"
+                                                {{ $application->status == 'rejected' ? 'selected' : '' }}>Rejected
+                                            </option>
+                                            <option value="offered"
+                                                {{ $application->status == 'offered' ? 'selected' : '' }}>Offered</option>
+                                            <option value="withdrawn"
+                                                {{ $application->status == 'withdrawn' ? 'selected' : '' }}>Withdrawn
+                                            </option>
+                                            <option value="closed"
+                                                {{ $application->status == 'closed' ? 'selected' : '' }}>Closed</option>
+                                        </select>
+                                        <div class="text-xs text-gray-500 mt-1 dark:text-gray-300">
+                                            Applied: {{ $application->created_at->format('M d, Y') }}
+                                        </div>
                                     </td>
+
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <a href="{{ route('admin.job-applications.show', $application->id) }}"
                                             class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300">View

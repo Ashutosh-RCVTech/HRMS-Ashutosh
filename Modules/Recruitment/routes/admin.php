@@ -96,6 +96,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('job-applications', JobApplicationController::class)->except('show');
         // Route::get('job-applications/{id}/resume', [JobApplicationController::class, 'downloadResume'])
         //     ->name('job-applications.resume');
+        Route::put('/admin/job-applications/{id}/status', [JobApplicationController::class, 'updateStatus'])->name('job-applications.updateStatus');
+
 
 
 

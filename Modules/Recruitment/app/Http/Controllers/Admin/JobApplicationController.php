@@ -41,7 +41,7 @@ class JobApplicationController extends Controller
     {
         $validatedData = $request->validate([
             'job_id' => 'required|exists:job_openings,id',
-            'resume' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'resume' => 'required|file|mimes:pdf,doc,docx|max:5120',
             'cover_letter' => 'nullable|string|max:5000',
         ]);
 
@@ -59,6 +59,16 @@ class JobApplicationController extends Controller
         return view('recruitment::admin.job-applications.show', compact('application'));
     }
 
+    // public function updateStatus(Request $request, $id)
+    // {
+    //     try {
+    //         $this->service->updateApplicationStatus($id, $request->status);
+    //         return response()->json(['success' => true]);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()], 500);
+    //     }
+    // }
+
     public function updateStatus(Request $request, $id)
     {
         try {
@@ -68,7 +78,6 @@ class JobApplicationController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
     public function download($id)
     {
         return $this->service->downloadResume($id);

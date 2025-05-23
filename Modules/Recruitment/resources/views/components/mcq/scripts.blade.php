@@ -1,4 +1,4 @@
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Add these variables at the top of your script
         let currentQuestionIndex = 0;
@@ -1006,4 +1006,4 @@
         updateTimer();
 
     });
-</script>
+</script> --}}
