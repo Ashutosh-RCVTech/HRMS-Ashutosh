@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+:is(.dark .dark\:text-white) {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1.2);
+    /* Slightly brighter in dark mode */
+    opacity: 0.9;
+}
+
+.dark .iti__arrow {
+    border-top-color: white !important;
+}
+
+.dark .iti__selected-dial-code {
+    color: white !important;
+}
+
+/* Add this to your CSS */
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  #suggestions-container {
+    scrollbar-width: thin;
+    scrollbar-color: #3B82F6 #f1f1f1;
+}
+
+#suggestions-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#suggestions-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 0 0 8px 8px;
+}
+
+#suggestions-container::-webkit-scrollbar-thumb {
+    background: #3B82F6;
+    border-radius: 4px;
+}
+
+.dark #suggestions-container::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.dark #suggestions-container::-webkit-scrollbar-thumb {
+    background: #2563eb;
+}
+
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}

@@ -1,0 +1,46 @@
+{
+  "resources/css/admin/app.css": {
+    "file": "assets/app.BRXK2xCv.css",
+    "src": "resources/css/admin/app.css",
+    "isEntry": true
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.C9rknQhw.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/candidate/app.css": {
+    "file": "assets/app.D9AVtSsM.css",
+    "src": "resources/css/candidate/app.css",
+    "isEntry": true
+  },
+  "resources/css/college/app.css": {
+    "file": "assets/app.DutH8z9j.css",
+    "src": "resources/css/college/app.css",
+    "isEntry": true
+  },
+  "resources/js/admin/app.js": {
+    "file": "assets/app.C-n0dgNo.js",
+    "name": "app",
+    "src": "resources/js/admin/app.js",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.DylQWD-w.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/candidate/app.js": {
+    "file": "assets/app.DyqdlpqP.js",
+    "name": "app",
+    "src": "resources/js/candidate/app.js",
+    "isEntry": true
+  },
+  "resources/js/college/app.js": {
+    "file": "assets/app.DVP4wEGY.js",
+    "name": "app",
+    "src": "resources/js/college/app.js",
+    "isEntry": true
+  }
+}

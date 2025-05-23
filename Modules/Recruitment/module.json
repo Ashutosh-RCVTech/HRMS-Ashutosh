@@ -1,0 +1,13 @@
+{
+    "name": "Recruitment",
+    "alias": "recruitment",
+    "description": "Manage recruitment processes.",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Recruitment\\Providers\\RecruitmentServiceProvider"
+    ],
+    "files": [],
+    "version": "1.0.0",
+    "author": "RCV Technology"
+}

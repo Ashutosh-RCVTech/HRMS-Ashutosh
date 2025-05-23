@@ -1,0 +1,331 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Urbanist:wght@300;400;500;600;700&display=swap");
+
+html {
+    background: #fafafa;
+}
+
+body {
+    font-family: "Urbanist", sans-serif;
+}
+
+.overflow-style-none::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: theme('colors.gray.100');
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: theme('colors.gray.300');
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.gray.400');
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+    background: theme('colors.gray.800');
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: theme('colors.gray.600');
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.gray.500');
+}
+
+/* Chart tooltip animations */
+.chart-container {
+    position: relative;
+}
+
+.chart-container canvas {
+    transition: all 0.3s ease;
+}
+
+/* Smooth transitions for dark mode */
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.overflow-style-none {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* width */
+.scroll-style-1::-webkit-scrollbar {
+    width: 2px;
+}
+
+/* Track */
+.scroll-style-1::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.scroll-style-1::-webkit-scrollbar-thumb {
+    background: #8e8e8e;
+}
+
+/* Handle on hover */
+.scroll-style-1::-webkit-scrollbar-thumb:hover {
+    background: #8e8e8e;
+}
+
+.layout-wrapper .sidebar-wrapper {
+    left: -308px;
+    transition: left 0.5s ease-in-out;
+}
+
+.layout-wrapper.active .sidebar-wrapper {
+    left: 0;
+}
+
+.layout-wrapper .sidebar-wrapper-collapse {
+    left: 0;
+    transition: left 0.5s ease-in-out;
+}
+
+.layout-wrapper.active .sidebar-wrapper-collapse {
+    left: -120px;
+}
+
+.layout-wrapper .body-wrapper {
+    /*margin-left: 96px;*/
+    transition: margin-left 0.5s ease-in-out;
+}
+
+.layout-wrapper.active .body-wrapper {
+    margin-left: 208px;
+}
+
+.upgrade-wrapper .upgrade-banner {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.layout-wrapper.active .body-wrapper .drawer-btn {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.layout-wrapper .body-wrapper .drawer-btn {
+    opacity: 100;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.layout-wrapper.active .body-wrapper .header-wrapper {
+    width: calc(100% - 308px);
+    transition: width 0.5s ease-in-out;
+}
+
+.layout-wrapper .body-wrapper .header-wrapper {
+    width: calc(100% - 96px);
+    transition: width 0.5s ease-in-out;
+}
+
+
+/* Accordion */
+.accordion-content {
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+
+
+:is(.sidebar-wrapper, .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item,
+:is(.sidebar-wrapper, .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item .item-ico svg .path-1,
+:is(.sidebar-wrapper, .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item .item-ico svg .path-2 {
+    transition: all 0.3s ease-in-out;
+}
+
+:is(.sidebar-wrapper, .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item:hover .item-ico svg .path-1,
+:is(.sidebar-wrapper, .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item:hover {
+    fill: pink;
+    color: pink;
+}
+
+:is(.sidebar-wrapper, .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item:hover .item-ico svg .path-2 {
+    fill: #b7ffd1;
+}
+
+.sidebar-wrapper .sidebar-body .nav-wrapper ul li.item .sub-menu {
+    display: none;
+    animation: tabFade 1s;
+}
+
+.sidebar-wrapper .sidebar-body .nav-wrapper ul li.item .sub-menu.active {
+    display: block;
+}
+
+@keyframes tabFade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.sidebar-wrapper-collapse .sidebar-body .nav-wrapper ul li.item {
+    position: relative;
+}
+
+.sidebar-wrapper-collapse .sidebar-body .nav-wrapper ul li.item .sub-menu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    z-index: 10;
+    display: none;
+}
+
+.sidebar-wrapper-collapse .sidebar-body .nav-wrapper ul li.item:hover .sub-menu {
+    display: block;
+}
+
+/* TODO: ===============RESPONSIVE */
+:is(.dark .sidebar-wrapper, .dark .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item .item-ico svg .path-1,
+:is(.dark .sidebar-wrapper, .dark .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item {
+    fill: #FFFFFF;
+    color: #FFFFFF;
+}
+
+:is(.dark .sidebar-wrapper, .dark .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item:hover .item-ico svg .path-1,
+:is(.dark .sidebar-wrapper, .dark .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item:hover {
+    fill: pink;
+    color: rgb(0, 0, 0);
+}
+
+:is(.dark .sidebar-wrapper, .dark .sidebar-wrapper-collapse) .sidebar-body .item-wrapper ul li.item:hover .item-ico svg .path-2 {
+    fill: pink;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0) brightness(0.8);
+    /* Slightly darker in light mode */
+    opacity: 0.7;
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1.2);
+    /* Slightly brighter in dark mode */
+    opacity: 0.9;
+}
+
+
+@media (max-width: 1536px) {}
+
+@media (max-width: 1280px) {}
+
+@media (max-width: 1024px) {
+    .fc .fc-view-harness {
+        width: 100% !important;
+        height: 600px !important;
+    }
+
+    .layout-wrapper.active .sidebar-wrapper-collapse {
+        left: 0;
+    }
+
+    .layout-wrapper.active .body-wrapper {
+        margin-left: 0;
+    }
+
+    .layout-wrapper.active .body-wrapper .header-wrapper {
+        width: calc(100% - 96px);
+        transition: all 0.5s ease-in-out;
+    }
+}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 640px) {
+    .fc .fc-view-harness {
+        width: 100% !important;
+        height: 400px !important;
+    }
+}
+
+@media (max-width: 426px) {
+    .layout-wrapper.active .body-wrapper {
+        margin-left: 0;
+    }
+
+    .layout-wrapper.active .body-wrapper .drawer-btn {
+        opacity: 1;
+    }
+
+    .layout-wrapper .body-wrapper {
+        margin-left: 0;
+    }
+
+    .layout-wrapper.active .sidebar-wrapper {
+        left: -308px;
+    }
+
+    .layout-wrapper .sidebar-wrapper {
+        left: 0;
+    }
+
+    .layout-wrapper .sidebar-wrapper+.aside-overlay {
+        left: 0;
+    }
+
+    .layout-wrapper.active .sidebar-wrapper+.aside-overlay {
+        left: -100%;
+    }
+}
+
+/* TODO: ===============RESPONSIVE END */
+
+
+@media (max-width: 1280px) {
+    .overFlowHidden {
+        overflow: hidden !important;
+    }
+}
+
+
+
+    /* Ensure the profile dropdown is positioned correctly on mobile */
+    @media (max-width: 767px) {
+        .profile-box {
+            /* Position the dropdown relative to the mobile header */
+            position: fixed;
+            top: 60px; /* Match the mobile header height */
+            right: 1rem; /* Add some right padding */
+            width: calc(100% - 2rem); /* Full width minus padding */
+            max-width: 300px; /* Limit maximum width */
+            z-index: 50; /* Ensure it's above other elements */
+            transform: translateX(0); /* Ensure it's not translated off-screen */
+        }
+
+        .profile-outside {
+            /* Ensure full-screen overlay */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 40;
+        }
+    }

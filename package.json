@@ -1,0 +1,24 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.10",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.21",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "dotenv": "^16.4.7",
+        "laravel-vite-plugin": "^1.2.0",
+        "postcss": "^8.5.3",
+        "tailwindcss": "^3.4.17",
+        "vite": "^5.4.14"
+    },
+    "dependencies": {
+        "chart.js": "^4.4.9",
+        "toastr": "^2.1.4"
+    }
+}
